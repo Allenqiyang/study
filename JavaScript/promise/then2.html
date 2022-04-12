@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The running order of code</title>
+</head>
+<body>
+    <script>
+        const p = new Promise((resolve, reject) => {
+            resolve('ok')
+            console.log('111')
+        })
+        p.then(value => console.log('222'))
+        console.log('333')
+        /* 执行结果为 111 333 222 
+        说明then里面的指定回调是异步执行的
+        要在同步任务执行完成才会执行 */
+    </script>
+</body>
+</html>
