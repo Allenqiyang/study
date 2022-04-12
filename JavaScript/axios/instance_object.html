@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The instance object of axios</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.25.0/axios.min.js"></script>
+</head>
+<body>
+    <script>
+        //创建实例对象 joke和axios功能几乎一模一样
+        const joke = axios.create({
+            baseURL: 'https://api.apiopen.top',
+            timeout: 2000
+        });
+        joke({
+            url: "/getJoke"
+        }).then(response => {
+            console.log(response);
+        })
+        joke.get('/getJoke').then(response => {
+            console.log(response.data);
+        })
+    </script>
+</body>
+</html>

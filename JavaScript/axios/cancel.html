@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cancel method of axios</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.25.0/axios.min.js"></script>
+</head>
+<body>
+    <button>Send request</button>
+    <button>cancel</button>
+    <script>
+        const btns = document.querySelectorAll('button');
+        let cancel = null;
+        btns[0].onclick = () =>{
+            if(cancel !== null){
+                //如果上一次的请求还在继续，就取消
+                cancel();
+            }
+            axios({
+                method: 'GET',
+                url: 'http://localhost:3000/posts',
+                cancelToken: new axios.CancelToken(function(c){
+                    cancel=c;
+                    console.log('c is '+c);
+                })
+            }).then(response =>{
+                cancel = null;
+                console.log(response);
+            })
+        }
+        btns[1].onclick = () =>{
+            cancel();
+        }
+    </script>
+</body>
+</html>
