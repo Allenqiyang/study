@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inherit of Function</title>
+</head>
+<body>
+    <script>
+        function Phone(brand, price) {
+            this.brand = brand
+            this.price = price
+        }
+        Phone.prototype.call = function() {
+            console.log("Phone call")
+        }
+
+        function SmartPhone(brand, price, color, size) {
+            Phone.call(this, brand, price)
+            this.color = color
+            this.size = size
+        }
+        
+        SmartPhone.prototype = new Phone
+        SmartPhone.prototype.constructor = SmartPhone
+
+        SmartPhone.prototype.photo = function() {
+            console.log("I can take photos")
+        }
+        const Apple = new SmartPhone("Apple", 5000, "White", "6.1ench")
+        console.log(Apple)
+    </script>
+</body>
+</html>
