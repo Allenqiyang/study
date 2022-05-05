@@ -1,5 +1,4 @@
 function myNew(){
-    console.log(arguments)
     //把构造函数拿出来
     let constructor = Array.prototype.shift.apply(arguments)
     //如果不是函数就报错
@@ -7,7 +6,7 @@ function myNew(){
         console.error('wrong')
         return
     }
-    // 创建一个新对象
+    // 创建一个新对象，将对象的原型指向构造函数的prototype
     let newObj = Object.create(constructor.prototype)
     // 将this指向创建的新对象，执行构造函数代码
     let result = constructor.apply(newObj,arguments)
