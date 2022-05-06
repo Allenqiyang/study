@@ -1,10 +1,10 @@
 
 function setinterval(fn, timeout) {
-    function inter() {
-        setTimeout(inter, timeout)
-        fn() 
-    }
-    setTimeout(inter, timeout)
+    let context = this
+    setTimeout(() => {
+        fn.call(context)
+        setinterval(fn, timeout)
+    }, timeout);
 }
 
 function sayHello() {
