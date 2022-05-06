@@ -18,7 +18,7 @@ console.log(array.at(-2))	//130
 
 #### 1.Array.prototype.concat
 
-`concat` 方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。
+`concat` 方法用于合并两个或多个数组。此方法不会更改现有数组，而是**返回一个新数组**。
 
 ```js
 const array1 = ['a', 'b', 'c'];
@@ -54,7 +54,7 @@ console.log(array4)		//[ 'a', 'b', { name: 'Allen' }]
 console.log(array1)		//[ 'a', 'b', { name: 'Allen' }]
 ```
 
-`concat`还会把数组扁平化
+`concat`还会把数组扁平化（当连接的内容是参数列表而不是数组才会打平，而且只有一层）
 
 ```js
 let array1 = [1,2,3]
@@ -66,7 +66,7 @@ console.log(array2)		//[1,2,3,4,5,6,7]
 
 #### 2.Array.prototype.slice
 
-`slice` 方法返回一个新的数组对象，这一对象是一个由 `begin` 和 `end` 决定的原数组的**浅拷贝**（包括 `begin`，不包括`end`）。原始数组不会被改变
+`slice` 方法**返回一个新的数组对象**，这一对象是一个由 `begin` 和 `end` 决定的原数组的**浅拷贝**（包括                                         `begin`，不包括`end`）。原始数组不会被改变
 
 若只有一个参数，slice会返回该索引到数组末尾的所有元素，返回该索引到数组末尾的所有元素。若有两个参数，就返回从开始索引到结束索引对应的所有元素
 
@@ -110,5 +110,83 @@ console.log(remove)     //['yellow']
 
 
 
+### 迭代方法
 
+5个迭代方法
+
+每个方法接收两个参数：函数，函数的this
+
+传给方法的函数接收3个参数：数组元素、元素索引、数组本身
+
+
+
+#### 1. Array.prototype.every
+
+对数组的每一项都运行传入的函数，如果 **每一项** 函数都返回true，那这个方法返回true
+
+> 若收到一个空数组，任何情况都返回true
+
+```js
+const nums = [1, 2, 3, 4, 5, 4, 3, 1]
+
+const everyResult = nums.every((item, index, array) => item > 2)
+console.log(everyResult)	//false
+```
+
+
+
+#### 2. Array.prototype.some
+
+对数组的每一项都运行传入的函数，如果 **有一项** 函数都返回true，那这个方法返回true
+
+> 若收到一个空数组，任何情况都返回false
+
+```js
+const nums = [1, 2, 3, 4, 5, 4, 3, 1]
+
+const someResult = nums.some((item, index, array) => item > 2)
+console.log(someResult)		//true
+```
+
+
+
+#### 3. Array.prototype.filter
+
+对数组的每一项都运行传入的函数，**返回一个新数组**，由所有通过测试函数（函数返回true）的项组成
+
+```js
+const nums = [1, 2, 3, 4, 5, 4, 3, 1]
+
+const filterResult = nums.filter((item, index, array) => item > 2)
+console.log(filterResult)		//[3, 4, 5, 4, 3]
+```
+
+
+
+#### 4. Array.prototype.map
+
+对数组的每一项都运行传入的函数，**返回一个新数组**，由每一项调用函数的结果（返回值）组成
+
+```js
+const nums = [1, 2, 3, 4, 5, 4, 3, 1]
+
+const mapResult = nums.map((item, index, array) => item * 2)
+console.log(mapResult)		//[2, 4, 6, 8, 10, 8, 6, 2]
+```
+
+
+
+#### 5. Array.prototype.forEach
+
+对数组的每一项都运行传入的函数，没有返回值
+
+```js
+const nums = [1, 2, 3];
+
+nums.forEach(item => console.log(item))
+
+// expected output: 1
+// expected output: 2
+// expected output: 3
+```
 
