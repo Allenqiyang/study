@@ -13,6 +13,34 @@ console.log(array.at(-2))	//130
 ```
 
 
+#### 2.Array.prototype.reduce
+
+`reduce` 方法对数组中的每个元素按序执行一个由您提供的 **reducer** 函数，每一次运行 **reducer** 会将先前元素的计算结果作为参数传入，最后将其结果汇总为单个返回值
+
+> 返回结果为使用reducer回调函数遍历整个数组后的结果
+
+```js
+const array = [1, 2, 3, 4]
+
+const initialValue = 0
+const result = array.reduce((pre, cur) => {
+  return pre + cur
+}, initialValue)
+console.log(result)		// 10
+```
+
+接收2个参数：一个 reducer 函数，一个 initialValue(可选)
+
+**reducer**函数里面可以写4个参数
+
+- `previousValue`：上一次调用 `callbackFn` 时的返回值。在第一次调用时，若指定了初始值 `initialValue`，其值则为 `initialValue`，否则为数组索引为 0 的元素 `array[0]`
+- `currentValue`：数组中正在处理的元素。在第一次调用时，若指定了初始值 `initialValue`，其值则为数组索引为 0 的元素 `array[0]`，否则为 `array[1]`
+- `currentIndex`：数组中正在处理的元素的索引。若指定了初始值 `initialValue`，则起始索引号为 0，否则从索引 1 起始
+- `array`：用于遍历的数组
+
+**initialValue**	作为第一次调用 `callback` 函数时参数 previousValue 的值
+
+
 
 ### 操作方法
 
@@ -86,6 +114,8 @@ console.log(array.slice(2,-1))	//[3,4,5]
 
 `splice`方法通过删除或替换现有元素或者原地添加新的元素来修改数组,并以数组形式返回被修改的内容。此方法会改变原数组
 
+参数： start修改开始位置、deleteCount移除的数组元素个数、item1，item2...要添加进数组的元素
+
 - 删除	给 splice 传2个参数：要删除的第一个元素的位置和要删除的数量
 - 插入	传3个参数：开始位置、0（删除数量）和要插入的元素
 - 替换	传3个参数：开始位置、要删除的元素数量和要插入的任意多个元素
@@ -111,8 +141,6 @@ console.log(remove)     //['yellow']
 
 
 ### 迭代方法
-
-5个迭代方法
 
 每个方法接收两个参数：函数，函数的this
 
@@ -160,12 +188,29 @@ const nums = [1, 2, 3, 4, 5, 4, 3, 1]
 const filterResult = nums.filter((item, index, array) => item > 2)
 console.log(filterResult)		//[3, 4, 5, 4, 3]
 ```
+接收2个参数：一个callback函数，还有用于执行callback函数时的this值(可选)
+
+回调函数可写3个参数，element，index，array
+
+
+#### 4. Array.prototype.find
+`find` 方法返回数组中满足提供的测试函数的第一个元素的值。否则返回 `undefined`
+
+```js
+const nums = [5, 12, 8, 130, 44]
+
+const found = nums.find(num => num > 10)
+
+console.log(found)    // 12
+```
 
 
 
-#### 4. Array.prototype.map
+#### 5. Array.prototype.map
 
 对数组的每一项都运行传入的函数，**返回一个新数组**，由每一项调用函数的结果（返回值）组成
+
+（该方法不会改变原数组，但是callback中可以改变，比如直接操作 array[index] ）
 
 ```js
 const nums = [1, 2, 3, 4, 5, 4, 3, 1]
@@ -176,7 +221,7 @@ console.log(mapResult)		//[2, 4, 6, 8, 10, 8, 6, 2]
 
 
 
-#### 5. Array.prototype.forEach
+#### 6. Array.prototype.forEach
 
 对数组的每一项都运行传入的函数，没有返回值
 
@@ -189,4 +234,6 @@ nums.forEach(item => console.log(item))
 // expected output: 2
 // expected output: 3
 ```
+
+
 
