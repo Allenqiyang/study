@@ -1,4 +1,3 @@
-
 function setinterval(fn, timeout) {
     let context = this
     setTimeout(() => {
