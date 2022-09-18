@@ -1,0 +1,17 @@
+{
+  "name": "npmdemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    // - ^x.y.z：表示x是保持不变的，y和z永远安装最新的版本
+    // - ~x.y.z：表示x和y保持不变的，z永远安装最新的版本
+    "axios": "^0.27.2"
+  }
+}
